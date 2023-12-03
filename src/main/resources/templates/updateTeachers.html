@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Teachers</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<form action="#" th:action="@{/teachers/{nip}(nip=${teacher.nip})}" th:object="${teacher}" method="post">
+    <table>
+        <tr>
+            <td><label for="nip">NIP</label></td>
+            <td> <input type="text" th:field="*{nip}" id="nip" placeholder="NIP" readonly></td>
+            <td th:if="${#fields.hasErrors('nip')}" th:errors="*{nip}" class="error"></td>
+        </tr>
+
+        <tr>
+            <td><label for="fullName">Full name</label></td>
+            <td><input type="text" th:field="*{fullName}" id="fullName" placeholder="Full name"></td>
+            <td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="error"></td>
+        </tr>
+
+        <tr>
+            <td> <label for="email">Email</label></td>
+            <td> <input type="email" th:field="*{email}" id="email" placeholder="Email"></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></td>
+        </tr>
+
+        <tr>
+            <td> <label for="phoneNumber">Phone Number</label></td>
+            <td> <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="phone Number"></td>
+            <td th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></td>
+        </tr>
+
+        <tr>
+            <td> <input type="submit" value="Update student"> </td>
+        </tr>
+
+        <tr>
+            <td> <a class="btn" th:href="@{/cancelEdit/{nip}(nip=${teacher.nip})}">cancel</a></td>
+        </tr>
+
+        <tr>
+            <div th:if="${#fields.hasErrors('global')}">
+                <h3>errors:</h3>
+                <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+            </div>
+        </tr>
+
+    </table>
+</form>
